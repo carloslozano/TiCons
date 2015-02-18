@@ -78,50 +78,54 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 				if ( in_array( 'iphone', $_POST['platforms'] ) || in_array( 'ipad', $_POST['platforms'] ) ) {
 
 					// iTunes Connect
-					$sizes[] = array( '/iTunesConnect/icon.png', 1024, 72 );
+					$sizes[] = array( '/iTunesConnect.png', 1024, 72 );
 
 					// iTunes Artwork
-					$sizes[] = array( '/project' . $assets_path . '/iphone/iTunesArtwork', 512, 72 );
-					$sizes[] = array( '/project' . $assets_path . '/iphone/iTunesArtwork@2x', 1024, 72 );
+					$sizes[] = array( $assets_path . '/iphone/iTunesArtwork', 512, 72 );
+					$sizes[] = array( $assets_path . '/iphone/iTunesArtwork@2x', 1024, 72 );
 
 					// Spotlight & Settings
-					$sizes[] = array( '/project' . $assets_path . '/iphone/appicon-Small@2x.png', 58, 72 );
+					$sizes[] = array( $assets_path . '/iphone/appicon-Small@2x.png', 58, 72 );
 
-					// Spotlight & Settings (iOS7)
-					$sizes[] = array( '/project' . $assets_path . '/iphone/appicon-Small-40.png', 40, 72 );
-					$sizes[] = array( '/project' . $assets_path . '/iphone/appicon-Small-40@2x.png', 80, 72 );
-
+					// Spotlight (iOS7)
+					$sizes[] = array( $assets_path . '/iphone/appicon-Small-40.png', 40, 72 );
+					$sizes[] = array( $assets_path . '/iphone/appicon-Small-40@2x.png', 80, 72 );
+	
 					// App (default)
-					$sizes[] = array( '/project' . $assets_path . '/iphone/appicon.png', 57, 72 );
+					$sizes[] = array( $assets_path . '/iphone/appicon.png', 57, 72 );
 
 					// iPhone
 					if ( in_array( 'iphone', $_POST['platforms'] ) ) {
 
 						// App
-						$sizes[] = array( '/project' . $assets_path . '/iphone/appicon@2x.png', 114, 72 );
+						$sizes[] = array( $assets_path . '/iphone/appicon@2x.png', 114, 72 );
 
 						// Spotlight && Settings
-						$sizes[] = array( '/project' . $assets_path . '/iphone/appicon-Small.png', 29, 72 );
+						$sizes[] = array( $assets_path . '/iphone/appicon-Small.png', 29, 72 );
+						
+						// Settings (iPhone 6 Plus)
+						$sizes[] = array( $assets_path . '/iphone/appicon-Small@3x.png', 87, 72 );
 
 						// App (iOS7)
-						$sizes[] = array( '/project' . $assets_path . '/iphone/appicon-60.png', 60, 72 );
-						$sizes[] = array( '/project' . $assets_path . '/iphone/appicon-60@2x.png', 120, 72 );
+						$sizes[] = array( $assets_path . '/iphone/appicon-60.png', 60, 72 );
+						$sizes[] = array( $assets_path . '/iphone/appicon-60@2x.png', 120, 72 );
+						$sizes[] = array( $assets_path . '/iphone/appicon-60@3x.png', 180, 72 );
 					}
 
 					// iPad
 					if ( in_array( 'ipad', $_POST['platforms'] ) ) {
 
 						// App
-						$sizes[] = array( '/project' . $assets_path . '/iphone/appicon-72.png', 72, 72 );
-						$sizes[] = array( '/project' . $assets_path . '/iphone/appicon-72@2x.png', 144, 72 );
+						$sizes[] = array( $assets_path . '/iphone/appicon-72.png', 72, 72 );
+						$sizes[] = array( $assets_path . '/iphone/appicon-72@2x.png', 144, 72 );
 
 						// Spotlight && Settings
-						$sizes[] = array( '/project' . $assets_path . '/iphone/appicon-Small-50.png', 50, 72 );
-						$sizes[] = array( '/project' . $assets_path . '/iphone/appicon-Small-50@2x.png', 100, 72 );
+						$sizes[] = array( $assets_path . '/iphone/appicon-Small-50.png', 50, 72 );
+						$sizes[] = array( $assets_path . '/iphone/appicon-Small-50@2x.png', 100, 72 );
 
 						// App (iOS7)
-						$sizes[] = array( '/project' . $assets_path . '/iphone/appicon-76.png', 76, 72 );
-						$sizes[] = array( '/project' . $assets_path . '/iphone/appicon-76@2x.png', 152, 72 );
+						$sizes[] = array( $assets_path . '/iphone/appicon-76.png', 76, 72 );
+						$sizes[] = array( $assets_path . '/iphone/appicon-76@2x.png', 152, 72 );
 					}
 				}
 
@@ -142,6 +146,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 					$image->cropThumbnailImage( $size[ICON_SIZE], $size[ICON_SIZE] );
 					$image->setImageResolution( $size[ICON_DPI], $size[ICON_DPI] );
 					$image->setImageUnits( imagick::RESOLUTION_PIXELSPERINCH );
+					// $image->setImageAlphaChannel( imagick::ALPHACHANNEL_DEACTIVATE );
 					$image->writeImage( $file );
 				}
 			}
@@ -154,30 +159,30 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
 				// Android
 				if ( in_array( 'android', $_POST['platforms'] ) ) {
-					$sizes[] = array( '/project' . $assets_path . '/android/appicon.png', 128, 72, !$hasIconTrans );
-					$sizes[] = array( '/project/platform/android/res/drawable-ldpi/appicon.png', 36, 120, !$hasIconTrans );
-					$sizes[] = array( '/project/platform/android/res/drawable-mdpi/appicon.png', 48
+					$sizes[] = array( '' . $assets_path . '/android/appicon.png', 128, 72, !$hasIconTrans );
+					$sizes[] = array( '/platform/android/res/drawable-ldpi/appicon.png', 36, 120, !$hasIconTrans );
+					$sizes[] = array( '/platform/android/res/drawable-mdpi/appicon.png', 48
 					, 160, !$hasIconTrans );
-					$sizes[] = array( '/project/platform/android/res/drawable-hdpi/appicon.png', 72, 240, !$hasIconTrans );
-					$sizes[] = array( '/project/platform/android/res/drawable-xhdpi/appicon.png', 96, 320, !$hasIconTrans );
-					$sizes[] = array( '/project/platform/android/res/drawable-xxhdpi/appicon.png', 144, 480, !$hasIconTrans );
-					$sizes[] = array( '/project/platform/android/res/drawable-xxhdpi/appicon.png', 192, 640, !$hasIconTrans );
-					$sizes[] = array( '/GooglePlay/icon.png', 512, 72, !$hasIconTrans );
+					$sizes[] = array( '/platform/android/res/drawable-hdpi/appicon.png', 72, 240, !$hasIconTrans );
+					$sizes[] = array( '/platform/android/res/drawable-xhdpi/appicon.png', 96, 320, !$hasIconTrans );
+					$sizes[] = array( '/platform/android/res/drawable-xxhdpi/appicon.png', 144, 480, !$hasIconTrans );
+					$sizes[] = array( '/platform/android/res/drawable-xxxhdpi/appicon.png', 192, 640, !$hasIconTrans );
+					$sizes[] = array( '/GooglePlay.png', 512, 72, !$hasIconTrans );
 				}
 
 				// Mobile Web
 				if ( in_array( 'mobileweb', $_POST['platforms'] ) ) {
-					$sizes[] = array( '/project' . $assets_path . '/mobileweb/appicon.png', 128, 72 );
+					$sizes[] = array( $assets_path . '/mobileweb/appicon.png', 128, 72 );
 				}
 
 				// Tizen
 				if ( in_array( 'tizen', $_POST['platforms'] ) ) {
-					$sizes[] = array( '/project' . $assets_path . '/tizen/appicon.png', 96, 72 );
+					$sizes[] = array( $assets_path . '/tizen/appicon.png', 96, 72 );
 				}
 
 				// BlackBerry
 				if ( in_array( 'blackberry', $_POST['platforms'] ) ) {
-					$sizes[] = array( '/project' . $assets_path . '/blackberry/appicon.png', 114, 72 );
+					$sizes[] = array( $assets_path . '/blackberry/appicon.png', 114, 72 );
 				}
 
 				foreach ( $sizes as $size ) {
@@ -199,6 +204,8 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 					if ( $size[ICON_RADIUS] && $radius > 0) {
 						$px = round(($size[ICON_SIZE] / 100) * $radius);
 						$image->roundCorners($px, $px);
+					} else {
+						// $image->setImageAlphaChannel( imagick::ALPHACHANNEL_DEACTIVATE );
 					}
 					
 					$image->setImageResolution( $size[ICON_DPI], $size[ICON_DPI] );
@@ -208,7 +215,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 			}
 
 			if ( $_FILES['splash']['error'] == 0 ) {
-				$ios_path = $_POST['language'] ? '/project/i18n/' . $_POST['language'] : '/project' . $assets_path . '/iphone';
+				$ios_path = $_POST['language'] ? '/i18n/' . $_POST['language'] : $assets_path . '/iphone';
 				$android_prefix = $_POST['language'] ? $_POST['language'] . '-' : '';
 
 				$sizes = array();
@@ -218,6 +225,11 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 					$sizes[] = array( $ios_path . '/Default.png', 320, $_POST['apple'] ? 480 : 460, 72 );
 					$sizes[] = array( $ios_path . '/Default@2x.png', 640, 960, 72 );
 					$sizes[] = array( $ios_path . '/Default-568h@2x.png', 640, 1136, 72 );
+					
+					// iPhone 6
+					$sizes[] = array( $ios_path . '/Default-667h@2x.png', 750, 1334, 72 );
+					$sizes[] = array( $ios_path . '/Default-Portrait-736h@3x.png', 1242, 2208, 72 );
+					$sizes[] = array( $ios_path . '/Default-Landscape-736h@3x.png', 2208, 1242, 72 );
 				}
 
 				// iPad
@@ -230,51 +242,52 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
 				// Android
 				if ( in_array( 'android', $_POST['platforms'] ) ) {
-					$sizes[] = array( '/project' . $assets_path . '/android/default.png', 320, 480, 72 );
-					$sizes[] = array( '/project' . $assets_path . '/android/images/res-' . $android_prefix . 'long-land-xxxhdpi/default.png', 1920, 1280, 640 );
-					$sizes[] = array( '/project' . $assets_path . '/android/images/res-' . $android_prefix . 'long-land-xxhdpi/default.png', 1600, 960, 480 );
-					$sizes[] = array( '/project' . $assets_path . '/android/images/res-' . $android_prefix . 'long-land-xhdpi/default.png', 960, 640, 320 );
-					$sizes[] = array( '/project' . $assets_path . '/android/images/res-' . $android_prefix . 'long-land-hdpi/default.png', 800, 480, 240 );
-					$sizes[] = array( '/project' . $assets_path . '/android/images/res-' . $android_prefix . 'long-land-mdpi/default.png', 480, 320, 160 );
-					$sizes[] = array( '/project' . $assets_path . '/android/images/res-' . $android_prefix . 'long-land-ldpi/default.png', 400, 240, 120 );
-					$sizes[] = array( '/project' . $assets_path . '/android/images/res-' . $android_prefix . 'long-port-xxxhdpi/default.png', 1280, 1920, 640 );
-					$sizes[] = array( '/project' . $assets_path . '/android/images/res-' . $android_prefix . 'long-port-xxhdpi/default.png', 960, 1600, 480 );
-					$sizes[] = array( '/project' . $assets_path . '/android/images/res-' . $android_prefix . 'long-port-xhdpi/default.png', 640, 960, 320 );
-					$sizes[] = array( '/project' . $assets_path . '/android/images/res-' . $android_prefix . 'long-port-hdpi/default.png', 480, 800, 240 );
-					$sizes[] = array( '/project' . $assets_path . '/android/images/res-' . $android_prefix . 'long-port-mdpi/default.png', 320, 480, 160 );
-					$sizes[] = array( '/project' . $assets_path . '/android/images/res-' . $android_prefix . 'long-port-ldpi/default.png', 240, 400, 120 );
-					$sizes[] = array( '/project' . $assets_path . '/android/images/res-' . $android_prefix . 'notlong-land-xxxhdpi/default.png', 1920, 1280, 640 );
-					$sizes[] = array( '/project' . $assets_path . '/android/images/res-' . $android_prefix . 'notlong-land-xxhdpi/default.png', 1600, 960, 480 );
-					$sizes[] = array( '/project' . $assets_path . '/android/images/res-' . $android_prefix . 'notlong-land-xhdpi/default.png', 960, 640, 320 );
-					$sizes[] = array( '/project' . $assets_path . '/android/images/res-' . $android_prefix . 'notlong-land-hdpi/default.png', 800, 480, 240 );
-					$sizes[] = array( '/project' . $assets_path . '/android/images/res-' . $android_prefix . 'notlong-land-mdpi/default.png', 480, 320, 160 );
-					$sizes[] = array( '/project' . $assets_path . '/android/images/res-' . $android_prefix . 'notlong-land-ldpi/default.png', 320, 240, 120 );
-					$sizes[] = array( '/project' . $assets_path . '/android/images/res-' . $android_prefix . 'notlong-port-xxxhdpi/default.png', 1280, 1920, 320 );
-					$sizes[] = array( '/project' . $assets_path . '/android/images/res-' . $android_prefix . 'notlong-port-xxhdpi/default.png', 960, 1600, 320 );
-					$sizes[] = array( '/project' . $assets_path . '/android/images/res-' . $android_prefix . 'notlong-port-xhdpi/default.png', 640, 960, 320 );
-					$sizes[] = array( '/project' . $assets_path . '/android/images/res-' . $android_prefix . 'notlong-port-hdpi/default.png', 480, 800, 240 );
-					$sizes[] = array( '/project' . $assets_path . '/android/images/res-' . $android_prefix . 'notlong-port-mdpi/default.png', 320, 480, 160 );
-					$sizes[] = array( '/project' . $assets_path . '/android/images/res-' . $android_prefix . 'notlong-port-ldpi/default.png', 240, 320, 120 );
+					$sizes[] = array( '/GooglePlayFeature.png', 1024, 500, 72 );
+					$sizes[] = array( $assets_path . '/android/default.png', 320, 480, 72 );
+					$sizes[] = array( $assets_path . '/android/images/res-' . $android_prefix . 'long-land-xxxhdpi/default.png', 1920, 1280, 640 );
+					$sizes[] = array( $assets_path . '/android/images/res-' . $android_prefix . 'long-land-xxhdpi/default.png', 1600, 960, 480 );
+					$sizes[] = array( $assets_path . '/android/images/res-' . $android_prefix . 'long-land-xhdpi/default.png', 960, 640, 320 );
+					$sizes[] = array( $assets_path . '/android/images/res-' . $android_prefix . 'long-land-hdpi/default.png', 800, 480, 240 );
+					$sizes[] = array( $assets_path . '/android/images/res-' . $android_prefix . 'long-land-mdpi/default.png', 480, 320, 160 );
+					$sizes[] = array( $assets_path . '/android/images/res-' . $android_prefix . 'long-land-ldpi/default.png', 400, 240, 120 );
+					$sizes[] = array( $assets_path . '/android/images/res-' . $android_prefix . 'long-port-xxxhdpi/default.png', 1280, 1920, 640 );
+					$sizes[] = array( $assets_path . '/android/images/res-' . $android_prefix . 'long-port-xxhdpi/default.png', 960, 1600, 480 );
+					$sizes[] = array( $assets_path . '/android/images/res-' . $android_prefix . 'long-port-xhdpi/default.png', 640, 960, 320 );
+					$sizes[] = array( $assets_path . '/android/images/res-' . $android_prefix . 'long-port-hdpi/default.png', 480, 800, 240 );
+					$sizes[] = array( $assets_path . '/android/images/res-' . $android_prefix . 'long-port-mdpi/default.png', 320, 480, 160 );
+					$sizes[] = array( $assets_path . '/android/images/res-' . $android_prefix . 'long-port-ldpi/default.png', 240, 400, 120 );
+					$sizes[] = array( $assets_path . '/android/images/res-' . $android_prefix . 'notlong-land-xxxhdpi/default.png', 1920, 1280, 640 );
+					$sizes[] = array( $assets_path . '/android/images/res-' . $android_prefix . 'notlong-land-xxhdpi/default.png', 1600, 960, 480 );
+					$sizes[] = array( $assets_path . '/android/images/res-' . $android_prefix . 'notlong-land-xhdpi/default.png', 960, 640, 320 );
+					$sizes[] = array( $assets_path . '/android/images/res-' . $android_prefix . 'notlong-land-hdpi/default.png', 800, 480, 240 );
+					$sizes[] = array( $assets_path . '/android/images/res-' . $android_prefix . 'notlong-land-mdpi/default.png', 480, 320, 160 );
+					$sizes[] = array( $assets_path . '/android/images/res-' . $android_prefix . 'notlong-land-ldpi/default.png', 320, 240, 120 );
+					$sizes[] = array( $assets_path . '/android/images/res-' . $android_prefix . 'notlong-port-xxxhdpi/default.png', 1280, 1920, 320 );
+					$sizes[] = array( $assets_path . '/android/images/res-' . $android_prefix . 'notlong-port-xxhdpi/default.png', 960, 1600, 320 );
+					$sizes[] = array( $assets_path . '/android/images/res-' . $android_prefix . 'notlong-port-xhdpi/default.png', 640, 960, 320 );
+					$sizes[] = array( $assets_path . '/android/images/res-' . $android_prefix . 'notlong-port-hdpi/default.png', 480, 800, 240 );
+					$sizes[] = array( $assets_path . '/android/images/res-' . $android_prefix . 'notlong-port-mdpi/default.png', 320, 480, 160 );
+					$sizes[] = array( $assets_path . '/android/images/res-' . $android_prefix . 'notlong-port-ldpi/default.png', 240, 320, 120 );
 				}
 
 				// Mobile Web
 				if ( in_array( 'mobileweb', $_POST['platforms'] ) ) {
-					$sizes[] = array( '/project' . $assets_path . '/mobileweb/apple_startup_images/Default.jpg', 320, 460, 72 );
-					$sizes[] = array( '/project' . $assets_path . '/mobileweb/apple_startup_images/Default.png', 320, 460, 72 );
-					$sizes[] = array( '/project' . $assets_path . '/mobileweb/apple_startup_images/Default-Landscape.jpg', 748, 1024, 72, 90 );
-					$sizes[] = array( '/project' . $assets_path . '/mobileweb/apple_startup_images/Default-Landscape.png', 748, 1024, 72, 90 );
-					$sizes[] = array( '/project' . $assets_path . '/mobileweb/apple_startup_images/Default-Portrait.jpg', 768, 1004, 72 );
-					$sizes[] = array( '/project' . $assets_path . '/mobileweb/apple_startup_images/Default-Portrait.png', 768, 1004, 72 );
+					$sizes[] = array( $assets_path . '/mobileweb/apple_startup_images/Default.jpg', 320, 460, 72 );
+					$sizes[] = array( $assets_path . '/mobileweb/apple_startup_images/Default.png', 320, 460, 72 );
+					$sizes[] = array( $assets_path . '/mobileweb/apple_startup_images/Default-Landscape.jpg', 748, 1024, 72, 90 );
+					$sizes[] = array( $assets_path . '/mobileweb/apple_startup_images/Default-Landscape.png', 748, 1024, 72, 90 );
+					$sizes[] = array( $assets_path . '/mobileweb/apple_startup_images/Default-Portrait.jpg', 768, 1004, 72 );
+					$sizes[] = array( $assets_path . '/mobileweb/apple_startup_images/Default-Portrait.png', 768, 1004, 72 );
 				}
 
 				// BlackBerry
 				if ( in_array( 'blackberry', $_POST['platforms'] ) ) {
 					// same name, only fix size
-					$sizes[] = array( '/project' . $assets_path . '/blackberry/splash-600x1024.png', 768, 1280, 72 );
+					$sizes[] = array( $assets_path . '/blackberry/splash-600x1024.png', 768, 1280, 72 );
 					// Q10 / Q5 support
-					$sizes[] = array( '/project' . $assets_path . '/blackberry/splash-720x720.png', 720, 720, 72 );
+					$sizes[] = array( $assets_path . '/blackberry/splash-720x720.png', 720, 720, 72 );
 					// maybe Appc rename it in the futuer
-					//$sizes[] = array( '/project' . $assets_path . '/blackberry/splash-768x1280.png', 768, 1280, 72 );
+					//$sizes[] = array( $assets_path . '/blackberry/splash-768x1280.png', 768, 1280, 72 );
 				}
 
 				$portrait = in_array( 'portrait', $_POST['orientations'] );
@@ -326,6 +339,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 					$image->cropThumbnailImage( $size[SPLASH_WIDTH], $size[SPLASH_HEIGHT] );
 					$image->setImageResolution( $size[SPLASH_DPI], $size[SPLASH_DPI] );
 					$image->setImageUnits( imagick::RESOLUTION_PIXELSPERINCH );
+					// $image->setImageAlphaChannel( imagick::ALPHACHANNEL_DEACTIVATE );
 					$image->writeImage( $file );
 				}
 			}
@@ -334,8 +348,8 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 
 				switch ( $_POST['compression'] ) {
 				case 'low': $o = 1; break;
-				case 'medium': $cq = 2; break;
-				case 'high': $cq = 3; break;
+				case 'medium': $o = 2; break;
+				case 'high': $o = 3; break;
 				}
 
 				shell_exec( 'optipng -v -o ' . $o . ' "' . implode( '" "', $compress ) . '"' );
@@ -494,7 +508,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 					  </div>
 					</div>
 				</div>
-				<div class="span5">For Android, Mobile Web, BlackBerry and Tizen you can select an alternative 512x512 PNG icon. These platforms do not apply any default effects and promote using transparency for create <a href="http://developer.android.com/guide/practices/ui_guidelines/icon_design_launcher.html" target="_blank">unique shapes</a>.</div>
+				<div class="span5">For Android, Mobile Web, BlackBerry and Tizen you can select an alternative 512x512 PNG icon. These platforms do not apply any default effects and promote using transparency to create <a href="http://developer.android.com/guide/practices/ui_guidelines/icon_design_launcher.html" target="_blank">unique shapes</a>.</div>
 			</div>
 			<div class="row-fluid">
 				<div class="span3"><h4>Splash</h4></div>
@@ -508,7 +522,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 					  </div>
 					</div>
 				</div>
-				<div class="span5">Splash screens come in all sorts of sizes and because they're not squarish, we need to crop. For this to work, you should select a 2048x2048 PNG where the logo or other important artwork is placed within the center 500x500 pixels.</div>
+				<div class="span5">Splash screens come in all sorts of sizes and because they're not squarish, we need to crop. For this to work, you should select a 2208x2208 PNG where the logo or other important artwork is placed within the center 1000x1000 pixels or so.</div>
 			</div>
 			<div class="row-fluid">
 				<div class="span3"><h4>Border radius</h4></div>
@@ -574,7 +588,7 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
 				<div class="span3"><h4>Fix</h4></div>
 				<div class="span9">
 					<label class="checkbox" for="apple">
-					  <input type="checkbox" name="apple" value="1" checked="checked" id="apple"> Conforms to <a href="http://developer.apple.com/library/ios/#documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/App-RelatedResources/App-RelatedResources.html" target="_blank">Apple's specs for launch images</a> rather than Appcelerator's. This fixes the splash-shift caused by differences in iPad and iPhone 4 portrait dimensions.
+					  <input type="checkbox" name="apple" value="1" checked="checked" id="apple"> Conforms to <a href="https://developer.apple.com/library/ios/documentation/UserExperience/Conceptual/MobileHIG/IconMatrix.html#//apple_ref/doc/uid/TP40006556-CH27-SW1" target="_blank">Apple's specs for launch images</a> rather than Appcelerator's. This fixes the splash-shift caused by differences in iPad and iPhone 4 portrait dimensions.
 					</label>
 				</div>
 			</div>
@@ -594,15 +608,27 @@ if ( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
         </form>
       </div>
 
-      <hr>
+  	<hr />
+      
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<!-- TiCons -->
+	<ins class="adsbygoogle"
+     		style="display:inline-block;width:728px;height:90px"
+     		data-ad-client="ca-pub-2966238263022924"
+     		data-ad-slot="1890839799"></ins>
+	<script>
+	(adsbygoogle = window.adsbygoogle || []).push({});
+	</script>
+
+	<hr />
 
 	  <a name="about"></a>
       <div class="row-fluid about">
 
         <div class="span6">
 
-        	<h4>iOS7</h4>
-        	<p>TiCons generates iOS7 icons.</p>
+        	<h4>iPhone 6(+)</h4>
+        	<p>TiCons has support for iPhone 6(+) <a href="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/MobileHIG/IconMatrix.html#//apple_ref/doc/uid/TP40006556-CH27-SW1" target="_blank">icons</a> and <a href="https://developer.apple.com/library/prerelease/ios/documentation/UserExperience/Conceptual/MobileHIG/LaunchImages.html#//apple_ref/doc/uid/TP40006556-CH22-SW1" target="_blank">splashes</a>.</p>
 
         	<h4>App stores</h4>
         	<p>TiCons also generates iTunes Connect and Google Play assets for you.</p>
